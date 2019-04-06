@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      About {{this.city}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <h3>Weather Now:</h3>
+    <p>{{(this.weatherNow ? this.weatherNow.main.temp:'') | number:'1.0-0'}}ºC - {{this.weatherNow ? this.weatherNow.weather[0].main:''}}</p>
+    <p>
+      {{(this.weatherNow ? this.weatherNow.main.temp_min:'') | number:'1.0-0'}}ºC / {{(this.weatherNow ? this.weatherNow.main.temp_max:'')| number:'1.0-0'}}ºC
+    </p>
+  </div>
+  <div class="buttons-container">
+    <button *ngFor="let date of this.tempDates" (click)='this.filterDate(date)' class="{{this.date.day == this.selectedDay ? 'selected':'unselected'}}">
+      {{date.day}}/{{date.month+1}} ({{this.weekdays[date.weekday]}})
+    </button>
+  </div>
+  <div *ngIf="this.minMax" class="minmax-container">  
+    Min is {{(this.minMax ? this.minMax[0]:'') | number:'1.0-0'}}ºC
+    Max is {{(this.minMax ? this.minMax[1]:'') | number:'1.0-0'}}ºC
+  </div>
+  <div class="perhour-container">
+    <div *ngFor="let temp of this.results">
+      <div>
+        {{temp.dt_txt | date: 'HH:mm'}}
+      </div>
+      {{temp.main.temp | number:'1.0-0'}}ºC - {{temp.weather[0].main}}
+    </div>
+  </div>
+  
+</ion-content>

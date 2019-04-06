@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Welcome to Japan! 日本へようこそ！</h2>
+  <p>
+    You may want to know what is the weather's forecast for the cities you will visit.
+  </p>
+  <p>
+    Click on the buttons below to access it and have a nice trip!
+  </p>
+  <div class="button-container">
+    <div *ngFor = 'let city of this.cities' class="city-button" (click)="goTo(city)">
+      <img src="assets/imgs/{{city.toLowerCase()}}.png" />
+      {{city}}
+    </div>
+  </div>
+</ion-content>
